@@ -51,7 +51,7 @@ jobs:
         password: ${{ secrets.STAP_ACR_PASSWORD }}
     
     - run: |
-          docker push ${{ secrets.STAP_ACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }}
+          docker push ${{ secrets.STAP_ACR_LOGIN_SERVER }}/99995709/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }}
 
     - name: Update Kubernetes resources
       run: |
