@@ -45,7 +45,7 @@ jobs:
           docker build -t ${{ env.BASE_ACR_URL }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }} -f Dockerfile-maven .
           echo "====================="
           echo "${{ env.BASE_ACR_URL }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }}"
-          ehoc "${{ env.STAP_ACR_URL }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }}"
+          echo "${{ env.STAP_ACR_URL }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }}"
           echo "====================="
           docker images
           docker tag ${{ env.BASE_ACR_URL }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }} ${{ env.STAP_ACR_URL }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }}
