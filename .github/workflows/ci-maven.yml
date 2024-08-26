@@ -4,6 +4,7 @@ on: workflow_dispatch
 
 env:
   IMAGE_NAME: sample-99995709
+  BASE_ACR_URL: cepgbaseacr.azurecr.io
 
 jobs:
   build:
@@ -34,18 +35,18 @@ jobs:
       - name: 'ACR login'
         uses: azure/docker-login@v1
         with:
-          login-server: ${{ vars.BASEACR }}
+          login-server: ${{ env..BASE_ACR_URL }}
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
       - name: 'Build & Tag Image'
         run: |
-          docker build -t ${{ vars.BASEACR }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }} -f Dockerfile-maven .
+          docker build -t ${{ env..BASE_ACR_URL }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }} -f Dockerfile-maven .
           echo "====================="
-          echo "${{ vars.BASEACR }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }}"
+          echo "${{ env..BASE_ACR_URL }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }}"
           echo "====================="
           docker images
-          docker tag ${{ vars.BASEACR }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }} ${{ secrets.STAPACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }}
+          docker tag ${{ env..BASE_ACR_URL }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }} ${{ secrets.STAPACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }}
 
       - name: 'Push image'
         uses: azure/docker-login@v1
