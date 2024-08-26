@@ -1,10 +1,10 @@
 kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: cloud-sample-configmap
+  name: sample-99995709-configmap
   namespace: default
   labels:
-    app: cloud-sample
+    app: sample-99995709
 data:
   application.yml: |-
     spring:
@@ -36,5 +36,5 @@ data:
             include: "*"
 
     pvc:
-      path: /mnt/cloud-sample
+      path: /mnt/sample-99995709
       

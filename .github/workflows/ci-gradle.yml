@@ -3,7 +3,7 @@ name: Java CI with Gradle
 on: workflow_dispatch
 
 env:
-  IMAGE_NAME: cloud-sample
+  IMAGE_NAME: sample-99995709
 
 jobs:
   build:

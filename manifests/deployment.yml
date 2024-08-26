@@ -20,21 +20,21 @@ spec:
           ports:
           - containerPort: 8080
           volumeMounts:
-          - mountPath: /mnt/cloud-sample
-            name: cloud-sample-volume
+          - mountPath: /mnt/sample-99995709
+            name: sample-99995709-volume
             readOnly: false
-            subPath: cloud-sample
+            subPath: sample-99995709
           - mountPath: /config
             name: application-properties
             readOnly: true
                           
       volumes:
-      - name: cloud-sample-volume
+      - name: sample-99995709-volume
         persistentVolumeClaim:
           claimName: cepg-aa-std-pvc
       - name: application-properties
         configMap:
-          name: cloud-sample-configmap
+          name: sample-99995709-configmap
           items:
             - key: application.yml
               path: application.yml

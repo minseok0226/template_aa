@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: cloud-sample-ingress
+  name: sample-99995709-ingress
 spec:
   ingressClassName: ingress-internal
   rules:
@@ -11,7 +11,7 @@ spec:
       - path: /
         backend:
           service:
-            name: cloud-sample
+            name: sample-99995709
             port:
               number: 8080
         pathType: Prefix
