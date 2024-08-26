@@ -5,6 +5,7 @@ on: workflow_dispatch
 env:
   IMAGE_NAME: sample-99995709
   BASE_ACR_URL: cepgbaseacr.azurecr.io
+  STAP_ACR_URL: cepgstapacr.azurecr.io
 
 jobs:
   build:
@@ -44,25 +45,25 @@ jobs:
           docker build -t ${{ env.BASE_ACR_URL }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }} -f Dockerfile-maven .
           echo "====================="
           echo "${{ env.BASE_ACR_URL }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }}"
-          ehoc "${{ secrets.STAPACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }}"
+          ehoc "${{ env.STAP_ACR_URL }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }}"
           echo "====================="
           docker images
-          docker tag ${{ env.BASE_ACR_URL }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }} ${{ secrets.STAPACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }}
+          docker tag ${{ env.BASE_ACR_URL }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }} ${{ env.STAP_ACR_URL }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }}
           echo "============== END ==================="
       - name: 'Push image'
         uses: azure/docker-login@v1
         with:
-          login-server: ${{ secrets.STAPACR_LOGIN_SERVER }}
+          login-server: ${{ env.STAP_ACR_URL }}
           username: ${{ secrets.REGISTRY_USERNAME }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
 
       - run: |
-          docker push ${{ secrets.STAPACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }}
+          docker push ${{ env.STAP_ACR_URL }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }}
 
       - name: Update Kubernetes resources
         run: |
           cd manifests/overlays/prod
-          kustomize edit set image ${{ secrets.STAPACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }}
+          kustomize edit set image ${{ env.STAP_ACR_URL }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }}
           cat kustomization.yaml
 
       - name: Commit files
