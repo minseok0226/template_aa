@@ -3,7 +3,7 @@ name: Java CI with Maven
 on: workflow_dispatch
 
 env:
-  IMAGE_NAME: 99995709
+  IMAGE_NAME: sample-99995709
 
 jobs:
   build:
@@ -41,7 +41,9 @@ jobs:
       - name: 'Build & Tag Image'
         run: |
           docker build -t ${{ secrets.BASEACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }} -f Dockerfile-maven .
+          echo "====================="
           echo "${{ secrets.BASEACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }}"
+          echo "====================="
           docker tag ${{ secrets.BASEACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }} ${{ secrets.STAPACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }}
 
       - name: 'Push image'
