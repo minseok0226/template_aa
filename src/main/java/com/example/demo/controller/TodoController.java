@@ -11,8 +11,4 @@ public class TodoController {
         return "todoList";
     }
 
-    @GetMapping("/api/v1/user")
-    public String getUser(){
-        return "99995709";
-    }
 }
