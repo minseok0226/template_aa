@@ -5,7 +5,7 @@ on: workflow_dispatch
 env:
   IMAGE_NAME: sample-99995709
   BASE_ACR_URL: cepgbaseacr.azurecr.io
-  STAP_ACR_URL: cepgstapacr.azurecr.io
+  STAP_ACR_URL: ce99995709acr.azurecr.io
 
 jobs:
   build:
