@@ -54,8 +54,8 @@ jobs:
         uses: azure/docker-login@v1
         with:
           login-server: ${{ env.STAP_ACR_URL }}
-          username: ${{ secrets.REGISTRY_USERNAME }}
-          password: ${{ secrets.REGISTRY_PASSWORD }}
+          username: ${{ secrets.CI_ACR_USER_NAME }}
+          password: ${{ secrets.CI_ACR_PASSWORD }}
 
       - run: |
           docker push ${{ env.STAP_ACR_URL }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }}
