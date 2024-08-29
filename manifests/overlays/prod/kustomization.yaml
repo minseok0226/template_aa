@@ -13,4 +13,4 @@ kind: Kustomization
 namePrefix: prod-
 images:
 - name: ce99995709acr.azurecr.io/sample-99995709
-  newTag: "202408290421"
+  newTag: "202408290447"
