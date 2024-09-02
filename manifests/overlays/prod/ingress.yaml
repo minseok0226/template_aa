@@ -5,7 +5,7 @@ metadata:
 spec:
   ingressClassName: ingress-internal
   rules:
-  - host: 99995709.cepg-99995709-sa.kubepia.net
+  - host: sample-99995709.ce-aa.kubepia.net
     http:
       paths:
       - path: /
