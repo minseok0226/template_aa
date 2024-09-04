@@ -14,5 +14,3 @@ namePrefix: prod-
 images:
 - name: ce99995709acr.azurecr.io/sample-99995709
   newTag: "202409040813"
-- name: ceappacr.azurecr.io/sample-99995709
-  newTag: "202409020823"
