@@ -13,6 +13,6 @@ kind: Kustomization
 namePrefix: prod-
 images:
 - name: ce99995709acr.azurecr.io/sample-99995709
-  newTag: "202408290516"
+  newTag: "202409040730"
 - name: ceappacr.azurecr.io/sample-99995709
   newTag: "202409020823"
