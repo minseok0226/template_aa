@@ -1,4 +1,5 @@
 # FROM bellsoft/liberica-openjdk-alpine:17
+# Test commit
 FROM cepgbaseacr.azurecr.io/docker.io/openjdk:17-slim
 
 VOLUME /tmp
